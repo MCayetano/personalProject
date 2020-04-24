@@ -1,68 +1,132 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## InsureMeNow: a leadgenerator for Insurance Agencies
 
-## Available Scripts
+</hr>
 
-In the project directory, you can run:
+MVP
+- users to have personal accounts
+- multiple listings, multiple reviews for those listings
+- bathrooms stored in db
+- users can add new bathroosm to our db
+- bathrom listings have pictures, addresses, and reviews
+- users can add new comments
+- users can edit/ratings
+- users can remove comments
 
-### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ICEBOX
+- incorporate google maps API for restrooms
+- users can sve their favorite list of restrooms
+- people who own restrooms can pay us money to falsify thier reviews
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### **DB**
+-Tables (schema)
+    -users
+    -autoins
+    -property
+    -commercial
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```SQL
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    username TEXT,
+    hashed_password TEXT,
+    email VARCHAR(32)
+);
+```
 
-### `npm run build`
+```SQL
+CREATE TABLE autoins (
+    auto_id SERIAL PRIMARY KEY,
+    address TEXT,
+    year NUMERIC,
+    make TEXT,
+    model TEXT,
+    vin_id NUMERIC,
+    user_id INT REFERENCES users(user_id)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+);
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```SQL
+CREATE TABLE homeins(
+    home_id SERIAL PRIMARY KEY,
+    address TEXT
+    user_id INT REFERENCES users(user_id)
+)
+``` 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```SQL
+CREATE  TABLE commercial (
+    commercial_ID SERIAL PRIMARY KEY,
+    adddress TEXT,
+    business_type TEXT,
+    user_id REFERENCES users(user_id)
+)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## **Server**
+- massive
+-express
+-dotenv
+-express-session
+-bcrypt
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+endPoints: address or preprogrammed tasked server knows what to ask, if your a restaraunt your front end is the person ordering food and your server is your waiter and your kitchen is your database. your endpoints are like the menu
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+-authCtrl:
+    -login: /auth/login
+    -register: /auth/register
+    -logout: /auth/logout
+    -userSession: /auth/user_session
 
-## Learn More
+-insuranceCtrl:
+    -(app.get) getautoins: /api/get_autoins
+    -(app.get) gethomeins: /api/get_homeins
+    -(app.get) getcommercial: /api/get_commercial
+    -(app.post) postautoins: /api/add_autoins
+    -(app.post) posthomeins: /api/add_homeins
+    -(app.post) postcommercial: /api/add_commercial
+    -(app.delete) deleteautoins: /api/delete_autoins/:id
+    -(app.delete) deletehomeins: /api/delete_homeinsins/:id
+    -(app.delete) deletecommercial: /api/delete_commercial/:id
+    -(app.put) editautoins: /api/edit_autoins/:id
+    -(app.put) edithomeins: /api/edit_homeins/:id
+    -(app.put) editcommercial: /api/edit_commercial/:id
+    -(app.post) addautoins: /api/add_autoins
+    -(app.post) addhomeins: /api/add_homeins
+    -(app.post) addcommercial: /api/add_commercial
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## **Client** (front-end)
+dependecies:
+- axios
+- redux
+- react-redux
+- react-promise-middleware
+- react-router-dom
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+file structure:
+- src/
+    - App.js
+    - App.css
+    - reset.css
+    - index.js
+    - components
+        - Header.js/.css
+        - Card.js/.css
+        - reviewForm.js/.css
+        - Login.js/.css
+        - Main.js/.css
+    - redux
+        - store
+        - reducer
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+routes:
+- main: /s
+- login: /login
+- bathroom: /bathroom/:id
+- form: /form
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

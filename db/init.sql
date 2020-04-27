@@ -17,6 +17,8 @@ VALUES
 
 CREATE TABLE autoins (
     auto_id SERIAL PRIMARY KEY,
+    first_name TEXT,
+    last_name TEXT,
     address TEXT,
     year NUMERIC,
     make TEXT,
@@ -26,17 +28,19 @@ CREATE TABLE autoins (
 
 );
 
-INSERT INTO autoins (year, make, model, vin_id)
+INSERT INTO autoins (first_name, last_name, address, year, make, model, vin_id)
 VALUES
-(2004, 'Honda', 'Civic', 01984959843390948),
-(2010, 'Kia', 'Sorento', 04857218459876235),
-(2019, 'Honda', 'Accord', 84839502938457892),
-(2015, 'Toyota', 'Camry', 22309485748932456),
-(2020, 'Rolls Royce', 'Drophead', 45456767892342353)
+('Luis', 'Savery', '2020 lakewood dr', 2004, 'Honda', 'Civic', 01984959843390948),
+('Lidia', 'Higinio', '505 park ave', 2010, 'Kia', 'Sorento', 04857218459876235),
+('Cellus', 'Hamilton', '5050 Broadway ave', 2019, 'Honda', 'Accord', 84839502938457892),
+('Richard', 'Lopez', '220 Parkhill ave', 2015, 'Toyota', 'Camry', 22309485748932456),
+('Marco', 'Cayetano', '155 osgood ave', 2020, 'Rolls Royce', 'Drophead', 45456767892342353)
 
 
 CREATE TABLE homeins(
     home_id SERIAL PRIMARY KEY,
+    first_name TEXT,
+    last_name TEXT,
     address TEXT,
     apt NUMERIC,
     city TEXT,
@@ -45,13 +49,13 @@ CREATE TABLE homeins(
     user_id INT REFERENCES users(user_id)
 );
 
-INSERT INTO homeins (address, apt, city, state, zipcode)
+INSERT INTO homeins (first_name, last_name, address, city, state, zipcode)
 VALUES
-('2020 lakewood dr', 'New York', 'NY', 10004),
-('505 park ave', 'New York', 'NY', 10028),
-('5050 Broadway ave', 'New York', 'NY', 10312),
-('220 Parkhill ave', 'Staten Island', 'NY', 10304),
-('155 osgood ave', 'Staten Island', 'NY', 10304)
+('Luis', 'Savery', '2020 lakewood dr', 'New York', 'NY', 10004),
+('Lidia', 'Higinio', '505 park ave', 'New York', 'NY', 10028),
+('Cellus', 'Hamilton', '5050 Broadway ave', 'New York', 'NY', 10312),
+('Richard', 'Lopez', '220 Parkhill ave', 'Staten Island', 'NY', 10304),
+('Marco', 'Cayetano', '155 osgood ave', 'Staten Island', 'NY', 10304)
 
 
  
@@ -59,8 +63,9 @@ VALUES
 
 CREATE  TABLE commercial (
     commercial_ID SERIAL PRIMARY KEY,
+    first_name TEXT,
+    last_name TEXT,
     address TEXT,
-    apt NUMERIC,
     city TEXT,
     state TEXT,
     zipcode NUMERIC,
@@ -68,7 +73,7 @@ CREATE  TABLE commercial (
     user_id INT REFERENCES users(user_id)
 );
 
-INSERT INTO commercial (address, apt, city, state, zipcode, business_type)
+INSERT INTO commercial (first_name, last_name, address, apt, city, state, zipcode, business_type)
 VALUES
-('108 Long Pond Ave', '236', 'Queens', 'NY', '10138', 'Landscaper'),
-('555 lexington ave', '656', 'New York', 'NY', '12129', 'Carpenter')
+('Dre', 'Billman', '108 Long Pond Ave', 'Queens', 'NY', 10138, 'Landscaper'),
+('jamezz', 'Mckinney', '555 lexington ave', 'New York', 'NY', 12129, 'Carpenter')

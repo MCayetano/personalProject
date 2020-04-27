@@ -1,1 +1,1 @@
-SELECT * FROM autoins;
+SELECT * FROM autoins ORDER by auto_id ASC;

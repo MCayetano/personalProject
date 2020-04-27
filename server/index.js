@@ -8,6 +8,7 @@ require('dotenv').config()
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 const {login, register , logout, userSession} = require('./controllers/authCtrl');
 const {getAuto, addAuto, deleteAuto, editAuto} = require('./controllers/autoCtrl');
+const{getHomes, addHomes, deleteHomes, editHomes} = require('./controllers/homeCtrl');
 
 
 massive({
@@ -40,16 +41,16 @@ app.get('/auth/user_session', userSession)
 //auto 
 app.get('/api/auto', getAuto);
 app.post('/api/auto', addAuto);
-// app.put('/api/auto/:id', editAuto);
+app.put('/api/auto/:id', editAuto);
 // app.delete('/api/auto/:id', deleteAuto);
 
 //home
-
+app.get('/api/homes', getHomes);
+app.get('/api/homes', addHomes);
 
 
 
 // -insuranceCtrl:
-//     -(app.get) gethomeins: /api/get_homeins
 //     -(app.get) getcommercial: /api/get_commercial
 //     -(app.post) posthomeins: /api/add_homeins
 //     -(app.post) postcommercial: /api/add_commercial

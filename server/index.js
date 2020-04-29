@@ -9,6 +9,8 @@ const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 const {login, register , logout, userSession} = require('./controllers/authCtrl');
 const {getAuto, addAuto, deleteAuto, editAuto} = require('./controllers/autoCtrl');
 const{getHomes, addHomes, deleteHomes, editHomes} = require('./controllers/homeCtrl');
+const{getCommercial, addCommercial, deleteCommercial, editCommercial} = require('./controllers/commercialCtrl');
+
 
 
 massive({
@@ -47,23 +49,14 @@ app.put('/api/auto/:id', editAuto);
 //home
 app.get('/api/homes', getHomes);
 app.get('/api/homes', addHomes);
-
-
-
-// -insuranceCtrl:
-//     -(app.get) getcommercial: /api/get_commercial
-//     -(app.post) posthomeins: /api/add_homeins
-//     -(app.post) postcommercial: /api/add_commercial
-
+app.put('/api/homes/:id', editHomes);
 //     -(app.delete) deletehomeins: /api/delete_homeinsins/:id
+
+//commercial
+app.get('/api/commercial', getCommercial);
+app.post('/api/commercial', addCommercial);
+app.post('api/commercial/:id', editCommercial);
 //     -(app.delete) deletecommercial: /api/delete_commercial/:id
-
-//     -(app.put) edithomeins: /api/edit_homeins/:id
-//     -(app.put) editcommercial: /api/edit_commercial/:id
-
-//     -(app.post) addhomeins: /api/add_homeins
-//     -(app.post) addcommercial: /api/add_commercial
-
 
 
 app.listen(SERVER_PORT, () => console.log(`straight fire on ${SERVER_PORT}`))

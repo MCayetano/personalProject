@@ -1,0 +1,1 @@
+SELECT * FROM commercial ORDER by commercial_id ASC;

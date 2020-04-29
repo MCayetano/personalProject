@@ -18,7 +18,6 @@ class Auto extends Component {
         licenseNumber: '',
         birthDate: '',
         Gender: '',
-        Date1stLic: '',
         maritalStatus: '',
         Home: '',
         year: '',
@@ -54,18 +53,17 @@ class Auto extends Component {
                 <input name='firstName' placeholder='First name' value={this.state.firstName} onChange={e => this.change(e)}/>
                 <input name='lastName' placeholder='Last name' value={this.state.lastName} onChange={e => this.change(e)}/>
                 <br />
-                <input name='Address'  placeholder='Address' value={this.state.address} onChange={e => this.change(e)}/>
-                <input name='City' placeholder='City' value={this.state.city} onChange={e => this.change(e)}/>
-                <input name='State' placeholder='State' value={this.state.state} onChange={e => this.change(e)}/>
-                <input name='Zip' placeholder='Zip' value={this.state.zip} onChange={e => this.change(e)}/>
+                <input name='address'  placeholder='Address' value={this.state.address} onChange={e => this.change(e)}/>
+                <input name='city' placeholder='City' value={this.state.city} onChange={e => this.change(e)}/>
+                <input name='state' placeholder='State' value={this.state.state} onChange={e => this.change(e)}/>
+                <input name='zip' placeholder='Zip' value={this.state.zip} onChange={e => this.change(e)}/>
                 <br />
-                <input name='Phone' placeholder='Phone' value={this.state.phone} onChange={e => this.change(e)}/>
-                <input name='Email' placeholder='Email' value={this.state.email} onChange={e => this.change(e)}/>
-                <input name='Driver License Number' placeholder='Driver License Number' value={this.state.licenseNumber} onChange={e => this.change(e)}/>
-                <input name='Birthdate' placeholder='Birthdate' value={this.state.birthDate} onChange={e => this.change(e)}/>
+                <input name='phone' placeholder='Phone' value={this.state.phone} onChange={e => this.change(e)}/>
+                <input name='email' placeholder='Email' value={this.state.email} onChange={e => this.change(e)}/>
+                <input name='licenseNumber' placeholder='Driver License Number' value={this.state.licenseNumber} onChange={e => this.change(e)}/>
+                <input name='birthDate' placeholder='Birthdate' value={this.state.birthDate} onChange={e => this.change(e)}/>
                 <br />
                 <input name='Gender' placeholder='Gender' value={this.state.Gender} onChange={e => this.change(e)}/>
-                <input name='Date First Lic' placeholder='Date First Lic' value={this.state.Date1stLic} onChange={e => this.change(e)}/>
                 <input name='Marital Status' placeholder='Marital Status' value={this.state.maritalStatus} onChange={e => this.change(e)}/>
                 <input name='Home' placeholder='Home' value={this.state.Home} onChange={e => this.change(e)}/>
                 <br />

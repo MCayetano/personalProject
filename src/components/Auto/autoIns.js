@@ -49,7 +49,7 @@ class Auto extends Component {
 
     render() {
         return(
-            <form>
+            <form className='form'>
              <div>
             <h1>Auto Insurance</h1>
             </div>

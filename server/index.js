@@ -6,7 +6,7 @@ require('dotenv').config()
 
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
-const {login, register , logout, userSession} = require('./controllers/authCtrl');
+// const {login, register , logout, userSession} = require('./controllers/authCtrl');
 const {getAuto, addAuto, deleteAuto, editAuto} = require('./controllers/autoCtrl');
 const{getHomes, addHomes, deleteHomes, editHomes} = require('./controllers/homeCtrl');
 const{getCommercial, addCommercial, deleteCommercial, editCommercial} = require('./controllers/commercialCtrl');
@@ -35,16 +35,16 @@ app.use(session({
 
 //authorization
 
-app.post('/auth/login', login);
-app.post('/auth/register', register);
-app.get('/auth/logout', logout);
-app.get('/auth/user_session', userSession)
+// app.post('/auth/login', login);
+// app.post('/auth/register', register);
+// app.get('/auth/logout', logout);
+// app.get('/auth/user_session', userSession)
 
 //auto 
 app.get('/api/auto', getAuto);
 app.post('/api/auto', addAuto);
 app.put('/api/auto/:id', editAuto);
-// app.delete('/api/auto/:id', deleteAuto);
+app.delete('/api/auto/:id', deleteAuto);
 
 //home
 app.get('/api/homes', getHomes);

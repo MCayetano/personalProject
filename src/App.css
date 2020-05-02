@@ -72,3 +72,13 @@ li a:hover:not(.active) {
 body {
   background-color: whitesmoke;
 }
+
+footer {
+  background-color: gold;
+  margin-top: 0px;
+}
+
+.icon {
+  color: #fff;
+  margin-left: 20px;
+}

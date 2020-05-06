@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
+import Header from "../Header/Header";
 
 
-
-
-
-class Auto extends Component {
+class Commercial extends Component {
 
     state = {
         firstName: '',
@@ -38,10 +36,9 @@ class Auto extends Component {
 
     render() {
         return(
+            <div>
+                <Header />
             <form>
-                <div>
-            <h1>Commercial</h1>
-            </div>
                 <input name='firstName' placeholder='First name' value={this.state.firstName} onChange={e => this.change(e)}/>
                 <input name='lastName' placeholder='Last name' value={this.state.lastName} onChange={e => this.change(e)}/>
                 <br />
@@ -58,10 +55,11 @@ class Auto extends Component {
                 <button onClick={() => this.onSubmit()}>Submit</button>
 
             </form>
+            </div>
         )
     }
 }
 
 
 
-export default Auto;
+export default Commercial;

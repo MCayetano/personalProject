@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-const REGISTER_USER = 'REGISTER_USER'
-const LOGIN_USER = 'LOGIN_USER'
-const LOGOUT_USER = 'LOGOUT_USER'
+const HOME_QUOTE = 'HOME_QUOTE'
+const AUTO_QUOTE = 'AUTO_QUOTE'
+const COMMERCIAL_QUOTE = 'COMMERCIAL_QUOTE'
 
 const initialState = {
     data: null, 
@@ -13,57 +13,58 @@ export default function(state = initialState, action) {
     let {type, payload} = action
 
     switch(type) {
-        case REGISTER_USER + '_PENDING':
+        case HOME_QUOTE + '_PENDING':
             return {
                 ...state, 
                 loading: true
             }
-        case REGISTER_USER + '_FULFILLED':
+        case HOME_QUOTE + '_FULFILLED':
             return {
                 ...state,
                 data: payload.data,
                 loading: false
             }
-        case REGISTER_USER + '_REJECTED':
+        case HOME_QUOTE + '_REJECTED':
             return {
                 ...state, 
                 loading: false
             }
 
-        case LOGIN_USER + '_PENDING':
+            case AUTO_QUOTE + '_PENDING':
             return {
                 ...state, 
                 loading: true
             }
-        case LOGIN_USER + '_FULFILLED':
+        case AUTO_QUOTE + '_FULFILLED':
             return {
                 ...state,
                 data: payload.data,
                 loading: false
             }
-        case LOGIN_USER + '_REJECTED':
+        case AUTO_QUOTE + '_REJECTED':
             return {
                 ...state, 
                 loading: false
             }
 
-
-        case LOGOUT_USER + '_PENDING':
+            case COMMERCIAL_QUOTE + '_PENDING':
             return {
                 ...state, 
                 loading: true
             }
-        case LOGOUT_USER + '_FULFILLED':
+        case COMMERCIAL_QUOTE + '_FULFILLED':
             return {
                 ...state,
-                data: null,
+                data: payload.data,
                 loading: false
             }
-        case LOGOUT_USER + '_REJECTED':
+        case COMMERCIAL_QUOTE + '_REJECTED':
             return {
                 ...state, 
                 loading: false
             }
+
+       
 
         default:
             return state
@@ -71,23 +72,24 @@ export default function(state = initialState, action) {
 }
 
 
-export function register(userInfo) {
+export function sendHomeQuote(quoteInfo) {
     return {
-        type: REGISTER_USER,
-        payload: axios.post('/auth/register', userInfo)
+        type: HOME_QUOTE,
+        payload: axios.post('/sendQuote', quoteInfo)
     }
 }
 
-export function login(userInfo) {
+export function sendAutoQuote(quoteInfo) {
     return {
-        type: LOGIN_USER, 
-        payload: axios.post('/auth/login', userInfo)
+        type: AUTO_QUOTE,
+        payload: axios.post('/sendQuote', quoteInfo)
     }
 }
 
-export function logout() {
+export function sendCommercialQuote(quoteInfo) {
     return {
-        type: LOGOUT_USER, 
-        payload: axios.delete('/auth/logout')
+        type: COMMERCIAL_QUOTE,
+        payload: axios.post('/sendQuote', quoteInfo)
     }
 }
+

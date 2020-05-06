@@ -1,24 +1,33 @@
 import React from 'react';
 import './App.css';
 import {Route, Switch} from 'react-router-dom';
+import Home from './components/Home/HomeIns';
 import Autoins from './components/Auto/Autoins';
 import Commercial from './components/Commercial/Commercial';
-import Homeins from './components/Home/HomeIns';
+import DefensiveDriving from './components/DefensiveDriving/Defensivedriving';
 import Auth from './components/Auth/Auth';
-import Header from './components/Header';
-import Footer from './Footer';
+import Dash from './components/Dash/Dash';
 
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Footer />
-      <Commercial />
       <Switch>
-        <Route path='/Auto' components={Autoins}/>
-        <Route path='/Home' components={Homeins}/>
-        <Route path='/' exact component={Auth}/>
+        <Route exact path='/'>
+            <Auth />
+        </Route>
+        <Route exact path='/dash'>
+            <Dash />
+        </Route>
+        <Route exact path='/commercial'>
+            <Commercial />
+        </Route>
+        <Route exact path='/auto'>
+            <Autoins />
+        </Route>
+        <Route exact path='/Home'>
+          <Home />
+        </Route>
       </Switch>
     </div>
   );

@@ -10,8 +10,7 @@ class Register extends Component {
             admin: false,
             name: '', 
             email: '', 
-            password: '', 
-            id: ''
+            password: ''
         }
     }
 
@@ -57,10 +56,10 @@ class Register extends Component {
                     <input 
                         type='checkbox'
                         onChange={this.handleClick}
-                        name='admin'
-                        checked={this.state.admin}
-                        id='admin'/>
-                    <label htmlFor='admin'>admin</label>
+                        name='is_admin'
+                        checked={this.state.is_admin}
+                        id='is_admin'/>
+                    <label htmlFor='admin'>admin?</label>
                 </span>
                 <input
                     type='text'
@@ -80,13 +79,6 @@ class Register extends Component {
                     name='password'
                     onChange={this.handleChange}
                     placeholder='password'/>
-                <input
-                    type='text'
-                    value={this.state.id}
-                    name='id'
-                    onChange={this.handleChange}
-                    placeholder='id'
-                    hidden={this.state.admin}/>
                 <button>register</button>
                 </form>
                 <button onClick={this.props.toggle}>need to login?</button>

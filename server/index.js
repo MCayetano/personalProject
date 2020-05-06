@@ -6,7 +6,7 @@ require('dotenv').config()
 
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
-// const {login, register , logout, userSession} = require('./controllers/authCtrl');
+const {login, register , logout, getUser} = require('./controllers/authCtrl');
 const {getAuto, addAuto, deleteAuto, editAuto} = require('./controllers/autoCtrl');
 const{getHomes, addHomes, deleteHomes, editHomes} = require('./controllers/homeCtrl');
 const{getCommercial, addCommercial, deleteCommercial, editCommercial} = require('./controllers/commercialCtrl');
@@ -19,7 +19,7 @@ massive({
 }).then(db => {
     app.set('db', db)
     console.log('db is good over here')
-}).catch(err => console.log('db is NOT good'))
+}).catch(err => console.log('db is NOT good', err))
 
 
 app.use(express.json())
@@ -35,10 +35,10 @@ app.use(session({
 
 //authorization
 
-// app.post('/auth/login', login);
-// app.post('/auth/register', register);
-// app.get('/auth/logout', logout);
-// app.get('/auth/user_session', userSession)
+app.post('/auth/login', login);
+app.post('/auth/register', register);
+app.get('/auth/logout', logout);
+app.get('/auth/user_session', getUser);
 
 //auto 
 app.get('/api/auto', getAuto);

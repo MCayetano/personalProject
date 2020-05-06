@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import Header from "../Header/Header";
 
 
 
@@ -45,10 +45,10 @@ class Home extends Component {
 
     render() {
         return(
+            <div>
+                <Header />
             <form>
-             <div>
             <h1>Home Insurance</h1>
-            </div>
                 <input name='firstName' placeholder='First name' value={this.state.firstName} onChange={e => this.change(e)}/>
                 <input name='lastName' placeholder='Last name' value={this.state.lastName} onChange={e => this.change(e)}/>
                 <input name='Gender' placeholder='Gender' value={this.state.Gender} onChange={e => this.change(e)}/>
@@ -74,6 +74,7 @@ class Home extends Component {
                 <button onClick={() => this.onSubmit()}>Submit</button>
 
             </form>
+            </div>
         )
     }
 }

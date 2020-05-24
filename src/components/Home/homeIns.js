@@ -13,7 +13,7 @@ class Home extends Component {
         city: '',
         state: '',
         zip: '',
-        homeQuote: {}
+        homesQuote: true
     };
 
     change = e => {
@@ -40,7 +40,14 @@ class Home extends Component {
     };
 
     deleteQuote = () => {
-        this.props.deleteAutoQuote();
+        this.props.deleteHomesQuote();
+    }
+
+    updateQuote = (address) => {
+        this.setState ({
+            homesQuote: false,
+            address: address
+        })
     }
 
 
@@ -51,7 +58,7 @@ class Home extends Component {
             <div>
                 <Header />
 
-                {homesQuote
+                {homesQuote && this.state.homesQuote
                     ?
                     <div className="quote">
                     <h2>Name</h2>
@@ -73,6 +80,7 @@ class Home extends Component {
                     <h4>{homesQuote.zip}</h4>
 
                     <button onClick={() => this.deleteQuote()}>Delete Quote</button>
+                    <button onClick={() => this.updateQuote(homesQuote.address)}>Edit Quote</button>
                 </div>
                 :
                 <div>
@@ -99,7 +107,13 @@ class Home extends Component {
                 <input name='purchasePrice' placeholder='Purchase Price' value={this.state.purchasePrice} onChange={e => this.change(e)}/>
                 <input name='Mortgage' placeholder='Mortgage' value={this.state.Mortgage} onChange={e => this.change(e)}/>
                 <br /> */}
-                <button onClick={() => this.onSubmit()}>Submit</button>
+
+                {this.state.homesQuote ?
+                    <button onClick={() => this.onSubmit()}>Submit</button>
+                    :
+                    <button onClick={() => this.props.editHomesQuote({address: this.state.address, city: this.state.city, state: this.state.state, zip: this.state.zip, user_id: this.state.user_id})}>update</button>
+                }
+                
 
             </form>
             </div>

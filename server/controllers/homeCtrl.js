@@ -21,6 +21,7 @@ module.exports = {
         const db = req.app.get('db')
         const {user_id} = req.session.user
         const {address, city, state, zip} = req.body
+        const {address} = req.params
         db.add_homes([address, city, state, zip, user_id]).then(() => { res.status(200).send(`updated home insurance with ${user_id}`)})
     },
 

@@ -49,7 +49,7 @@ app.delete('/api/auto/:id', deleteAuto);
 //home
 app.get('/api/homes', getHomes);
 app.post('/api/homes', addHomes);
-app.put('/api/homes/:id', editHomes);
+app.put('/api/homes/:address', editHomes);
 app.delete('/api/homes/:id', deleteHomes);
 
 //commercial

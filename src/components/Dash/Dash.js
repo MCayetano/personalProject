@@ -22,7 +22,9 @@ class Dash extends Component {
         return (
             <div>
             <Header />
-                 <div><h1> Hi {name ? name : ''}  </h1></div>
+                 <div><h1> Hi {name ? name : ''}  </h1>
+                 <h2>Welcome to The Agency, where we are dedicated to insuring you!</h2>
+                 </div>
             </div>
         )
     }

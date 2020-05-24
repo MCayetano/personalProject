@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Header from "../Header/Header";
+import {connect} from 'react-redux';
+import {getHomesQuote, addHomesQuote, editHomesQuote, deleteHomesQuote} from '../../Redux/reducers/home';
 
 
 
@@ -7,24 +9,11 @@ import Header from "../Header/Header";
 class Home extends Component {
 
     state = {
-        firstName: '',
-        lastName: '',
         address: '',
         city: '',
         state: '',
         zip: '',
-        phone: '',
-        email: '',
-        birthDate: '',
-        Gender: '',
-        howLongAtAddress: '',
-        ifLessThanThree: '',
-        dwellingType: '',
-        purchasePrice: '',
-        Mortgage: '',
-        
-        
-
+        homeQuote: {}
     };
 
     change = e => {
@@ -33,33 +22,72 @@ class Home extends Component {
         })
     };
 
+    componentDidMount(){
+        this.props.getHomesQuote();
+    }
+
     onSubmit = () => {
-        console.log(this.state)
+        const {address, city, state, zip} = this.state;
+        const user_id = this.props.user.user_id;
+
+        this.props.addHomesQuote({address, city, state, zip, user_id})
+        .then((response) => {
+            console.log(response);
+        })
+        .catch(err => {
+            console.log(err)
+        })
     };
 
-
-
-
+    deleteQuote = () => {
+        this.props.deleteAutoQuote();
+    }
 
 
 
     render() {
+        const homesQuote = (this.props.homes && this.props.homes[0]) || null;
         return(
             <div>
                 <Header />
-            <form>
+
+                {homesQuote
+                    ?
+                    <div className="quote">
+                    <h2>Name</h2>
+                    <h4>{homesQuote.name}</h4>
+
+                    <h2>Email</h2>
+                    <h4>{homesQuote.email}</h4>
+
+                    <h2>Address</h2>
+                    <h4>{homesQuote.address}</h4>
+
+                    <h2>City</h2>
+                    <h4>{homesQuote.city}</h4>
+
+                    <h2>State</h2>
+                    <h4>{homesQuote.state}</h4>
+
+                    <h2>Zip</h2>
+                    <h4>{homesQuote.zip}</h4>
+
+                    <button onClick={() => this.deleteQuote()}>Delete Quote</button>
+                </div>
+                :
+                <div>
             <h1>Home Insurance</h1>
-                <input name='firstName' placeholder='First name' value={this.state.firstName} onChange={e => this.change(e)}/>
+            <form className='form'>
+                {/* <input name='firstName' placeholder='First name' value={this.state.firstName} onChange={e => this.change(e)}/>
                 <input name='lastName' placeholder='Last name' value={this.state.lastName} onChange={e => this.change(e)}/>
                 <input name='Gender' placeholder='Gender' value={this.state.Gender} onChange={e => this.change(e)}/>
-                <input name='birthDate' placeholder='Birthdate' value={this.state.birthDate} onChange={e => this.change(e)}/>
-                <br />
+                <input name='birthDate' placeholder='Birthdate' value={this.state.birthDate} onChange={e => this.change(e)}/> */}
                 <input name='address'  placeholder='Address' value={this.state.address} onChange={e => this.change(e)}/>
                 <input name='city' placeholder='City' value={this.state.city} onChange={e => this.change(e)}/>
                 <input name='state' placeholder='State' value={this.state.state} onChange={e => this.change(e)}/>
                 <input name='zip' placeholder='Zip' value={this.state.zip} onChange={e => this.change(e)}/>
-                <br />
-                <input name='phone' placeholder='Phone' value={this.state.phone} onChange={e => this.change(e)}/>
+            
+                {/* <input name='phone' placeholder='Phone' value={this.state.phone} onChange={e => this.change(e)}/>
                 <input name='email' placeholder='Email' value={this.state.email} onChange={e => this.change(e)}/>
                 <input name='licenseNumber' placeholder='Driver License Number' value={this.state.licenseNumber} onChange={e => this.change(e)}/>
                 
@@ -70,15 +98,30 @@ class Home extends Component {
                 <input name='dwellingType' placeholder='Dwelling Type' value={this.state.dwellingType} onChange={e => this.change(e)}/>
                 <input name='purchasePrice' placeholder='Purchase Price' value={this.state.purchasePrice} onChange={e => this.change(e)}/>
                 <input name='Mortgage' placeholder='Mortgage' value={this.state.Mortgage} onChange={e => this.change(e)}/>
-                <br />
+                <br /> */}
                 <button onClick={() => this.onSubmit()}>Submit</button>
 
             </form>
+            </div>
+    }
             </div>
         )
     }
 }
 
+const mapStateToProps = state => {
+    let {data: user} = state.user
+    let {data: home} = state.home
+    return {user, home}
+}
+
+const mapDispatchToProps = {
+    getHomesQuote,
+    addHomesQuote,
+    editHomesQuote,
+    deleteHomesQuote
+}
 
 
-export default Home;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

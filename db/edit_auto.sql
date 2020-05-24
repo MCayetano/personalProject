@@ -1,2 +1,2 @@
-UPDATE autoins SET first_name = $2, last_name = $3, address = $4, year = $5, make = $6, model = $7, vin_id = $8, user_id = $9
-WHERE auto_id = $1
+UPDATE autoins SET license = $1, year = $2, make = $3, model = $4, vin = $5, user_id = $6
+WHERE vin = $5;

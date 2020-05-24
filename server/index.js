@@ -43,14 +43,14 @@ app.get('/auth/user_session', getUser);
 //auto 
 app.get('/api/auto', getAuto);
 app.post('/api/auto', addAuto);
-app.put('/api/auto/:id', editAuto);
+app.put('/api/auto/:vin', editAuto);
 app.delete('/api/auto/:id', deleteAuto);
 
 //home
 app.get('/api/homes', getHomes);
-app.get('/api/homes', addHomes);
+app.post('/api/homes', addHomes);
 app.put('/api/homes/:id', editHomes);
-//     -(app.delete) deletehomeins: /api/delete_homeinsins/:id
+app.delete('/api/homes/:id', deleteHomes);
 
 //commercial
 app.get('/api/commercial', getCommercial);

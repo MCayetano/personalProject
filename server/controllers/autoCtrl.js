@@ -19,9 +19,10 @@ module.exports = {
 
      editAuto: async (req, res, next) => {
          const db = req.app.get('db')
-         const id = parseInt(req.params.id)
-         const{license, year, make, model, vin} = req.body
-         db.edit_auto([id, license, year, make, model, vin]).then(() =>{ res.status(200).send(`updated auto insurance with ${id}`) })
+         const {user_id} = req.session.user
+         const {license, year, make, model} = req.body
+         const {vin} = req.params
+         db.edit_auto([license, year, make, model, vin, user_id]).then(() => { res.status(200).send(`updated auto insurace with ${user_id}`)})
      },
 
      deleteAuto: async (req, res, next) => {

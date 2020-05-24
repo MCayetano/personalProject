@@ -40,12 +40,14 @@ module.exports = {
             let user = users[0]
     
             if (!user) {
+                console.log(user)
                 return res.status(401).send('email or password incorrect')
             }
 
             let isAuthenticated = bcrypt.compareSync(password, user.password)
 
             if (!isAuthenticated) {
+                console.log(authenticated)
                 return res.status(401).send('email or password incorrect')
             }
 

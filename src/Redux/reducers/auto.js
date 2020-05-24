@@ -105,7 +105,7 @@ export function addAutoQuote(quoteInfo) {
 export function editAutoQuote(quoteInfo) {
     return {
         type: EDIT_AUTO_QUOTE,
-        payload: axios.put('/api/auto/:id', quoteInfo)
+        payload: axios.put(`/api/auto/${quoteInfo.vin}`, quoteInfo)
     }
 }
 

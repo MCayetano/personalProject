@@ -88,28 +88,28 @@ export default function(state = initialState, action) {
 }
 
 
-export function getHomeQuote(quoteInfo) {
+export function getHomesQuote(quoteInfo) {
     return {
         type: GET_HOME_QUOTE,
         payload: axios.post('/api/homeS', quoteInfo)
     }
 }
 
-export function addHomeQuote(quoteInfo) {
+export function addHomesQuote(quoteInfo) {
     return {
         type: ADD_HOME_QUOTE,
         payload: axios.post('/api/homeS', quoteInfo)
     }
 }
 
-export function editHomeQuote(quoteInfo) {
+export function editHomesQuote(quoteInfo) {
     return {
         type: EDIT_HOME_QUOTE,
         payload: axios.post('/api/homeS/:id', quoteInfo)
     }
 }
 
-export function deleteHomeQuote(quoteInfo) {
+export function deleteHomesQuote(quoteInfo) {
     return {
         type: DELETE_HOME_QUOTE,
         payload: axios.post('/api/homeS/:id', quoteInfo)

@@ -11,7 +11,7 @@ class Auto extends Component {
         make: '',
         model: '',
         vin: '',
-        autoQuote: {}
+        autoQuote: true
     };
 
     change = e => {
@@ -41,13 +41,23 @@ class Auto extends Component {
         this.props.deleteAutoQuote();
     }
 
+    updateQuote = (vin) => {
+        this.setState({
+            autoQuote: false,
+            vin: vin
+        });
+    }
+
     render() {
         const autoQuote = (this.props.auto && this.props.auto[0]) || null;
+        // let {autoQuote} = this.state;
+        console.log(autoQuote)
+        console.log("this is props", this.props.auto)
         return(
             <div>
             <Header />
 
-            {autoQuote
+            {autoQuote && this.state.autoQuote
                 ? 
                 <div className="quote">
                     <h2>Name</h2>
@@ -72,10 +82,11 @@ class Auto extends Component {
                     <h4>{autoQuote.vin}</h4>
 
                     <button onClick={() => this.deleteQuote()}>Delete Quote</button>
+                    <button onClick={() => this.updateQuote(autoQuote.vin)}>Edit Quote</button>
                 </div>
                 :
             <div>
-            <h1>Submit this form to get a quote within minutes</h1>
+            <h1>Auto Quote</h1>
             <form className='form'>
                 {/* <input name='firstName' placeholder='First name' value={this.state.firstName} onChange={e => this.change(e)}/> */}
                 {/* <input name='lastName' placeholder='Last name' value={this.state.lastName} onChange={e => this.change(e)}/> */}
@@ -96,7 +107,7 @@ class Auto extends Component {
                 <input name='year'placeholder='Year' value={this.state.year} onChange={e => this.change(e)}/>
                 <input name='make' placeholder='Make' value={this.state.make} onChange={e => this.change(e)}/>
                 <input name='model' placeholder='Model' value={this.state.model} onChange={e => this.change(e)}/>
-                <input name='vin' placeholder='Vin' value={this.state.Vin} onChange={e => this.change(e)}/>
+                <input name='vin' placeholder='Vin' value={this.state.vin} onChange={e => this.change(e)}/>
                 
                 {/* <input name='Current Insurance' placeholder='Current Insurance' value={this.state.CurrentIns} onChange={e =>
                  this.change(e)}/>
@@ -105,7 +116,11 @@ class Auto extends Component {
                     this.change(e)}/>
                 <input name='Renewal Date' placeholder='Renewal Date' alue={this.state.renewalDate} onChange={e => this.change(e)}/> */}
                
-                <button onClick={() => this.onSubmit()}>Submit</button>
+                {this.state.autoQuote ? 
+                    <button onClick={() => this.onSubmit()}>Submit</button>
+                    :
+                    <button onClick={() => this.props.editAutoQuote({license: this.state.license, year: this.state.year, make: this.state.make, model: this.state.model, vin: this.state.vin, user_id: this.state.user_id})}>Update</button>
+                    }
 
             </form>
             </div>

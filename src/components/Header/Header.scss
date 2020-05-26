@@ -25,6 +25,21 @@
                 }
             }
         }
+        @media (max-width: 768px) {
+            flex-flow: column nowrap;
+            background-color: gold;
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 180px;
+            width: 100px;
+            padding-top: 3.5rem;
+
+            li {
+                color: white;
+            }
+        }
+
     }
 
 }
